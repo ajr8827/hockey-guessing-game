@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 2em;
+}
+
+.button {
+    display: inline-block;
+    padding: 1em 2em;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.player-stats {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.guess-form {
+    margin-bottom: 1em;
+}
+
+#guess-input {
+    padding: 0.5em;
+    width: 200px;
+}
+
+#submit-guess {
+    padding: 0.5em 1em;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-guess:hover {
+    background-color: #218838;
+}
+
+#feedback {
+    margin-top: 1em;
+}
