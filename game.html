@@ -16,7 +16,8 @@
             <img src="images/example.png" alt="Player Stats Screenshot" id="player-stats-image">
         </div>
         <div class="guess-form">
-            <input type="text" id="guess-input" placeholder="Enter player name">
+            <input type="text" id="guess-input" placeholder="Enter player name" list="player-suggestions">
+            <datalist id="player-suggestions"></datalist>
             <button id="submit-guess">Submit</button>
         </div>
         <div id="feedback"></div>
@@ -24,6 +25,7 @@
     <footer>
         <a href="index.html" class="button">Back to Home</a>
     </footer>
+    <script src="players.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
