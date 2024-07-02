@@ -1,10 +1,10 @@
-// Replace 'Steve Yzerman' with the actual player name for the new screenshot
-const correctPlayerName = "Steve Yzerman"; 
+const correctPlayerName = "Steve Yzerman"; // Update with the correct player name from your new screenshot
 
 document.getElementById('submit-guess').addEventListener('click', function() {
-    const guess = document.getElementById('guess-input').value.toLowerCase();
+    let guess = document.getElementById('guess-input').value.toLowerCase().trim();
+    console.log(`Guess: ${guess}, Correct: ${correctPlayerName.toLowerCase().trim()}`); // Debugging line
     
-    if (guess === correctPlayerName.toLowerCase()) {
+    if (guess === correctPlayerName.toLowerCase().trim()) {
         document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayerName}.`;
         document.getElementById('feedback').style.color = "green";
     } else {
