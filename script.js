@@ -1,5 +1,5 @@
 // Replace 'Steve Yzerman' with the actual player name for the new screenshot
-const correctPlayerName = "Wayne Gretzky"; 
+const correctPlayerName = "Steve Yzerman"; 
 
 document.getElementById('submit-guess').addEventListener('click', function() {
     const guess = document.getElementById('guess-input').value.toLowerCase();
