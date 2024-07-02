@@ -1,5 +1,5 @@
-// Replace example player name with actual player name associated with the screenshot
-const correctPlayerName = "Alex Nylander"; 
+// Replace 'Steve Yzerman' with the actual player name for the new screenshot
+const correctPlayerName = "Steve Yzerman"; 
 
 document.getElementById('submit-guess').addEventListener('click', function() {
     const guess = document.getElementById('guess-input').value.toLowerCase();
