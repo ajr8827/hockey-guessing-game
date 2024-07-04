@@ -46,3 +46,4 @@ document.getElementById('submit-guess').addEventListener('click', function () {
         }
     }
 });
+
