@@ -13,7 +13,7 @@ const playerData = [
 function getPlayerIndex() {
     const startDate = new Date("2024-01-01"); // Starting date
     const today = new Date();
-    const diffTime = Math.abs(today - startDate);
+    const diffTime = today - startDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     return diffDays % playerData.length;
 }
