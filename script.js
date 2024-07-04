@@ -11,7 +11,7 @@ const playerData = [
 
 // Function to get the index of the player based on the date
 function getPlayerIndex() {
-    const startDate = new Date("2024-04-07"); // Starting date
+    const startDate = new Date("2024-01-01"); // Starting date
     const today = new Date();
     const diffTime = Math.abs(today - startDate);
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
