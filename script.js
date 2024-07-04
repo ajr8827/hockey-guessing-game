@@ -1,12 +1,12 @@
 // Array of player data for the week
 const playerData = [
-    { name: "Braden Schneider", image: "images/player1.png" },
-    { name: "Morgan Geekie", image: "images/player2.png" },
-    { name: "Connor McMichael", image: "images/player3.png" },
-    { name: "Mike Amadio", image: "images/player4.png" },
-    { name: "David Kampf", image: "images/player5.png" },
-    { name: "Lawson Crouse", image: "images/player6.png" },
-    { name: "Kiefer Sherwood", image: "images/player7.png" }
+    { name: "Braden Schneider", image: "images/Player1.png" },
+    { name: "Morgan Geekie", image: "images/Player2.png" },
+    { name: "Connor McMichael", image: "images/Player3.png" },
+    { name: "Mike Amadio", image: "images/Player4.png" },
+    { name: "David Kampf", image: "images/Player5.png" },
+    { name: "Lawson Crouse", image: "images/Player6.png" },
+    { name: "Kiefer Sherwood", image: "images/Player7.png" }
 ];
 
 // Function to get the index of the player based on the date
@@ -46,4 +46,3 @@ document.getElementById('submit-guess').addEventListener('click', function () {
         }
     }
 });
-
