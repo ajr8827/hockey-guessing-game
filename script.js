@@ -11,11 +11,20 @@ const playerData = [
 
 // Function to get the index of the player based on the date
 function getPlayerIndex() {
-    const startDate = new Date("2024-01-01"); // Starting date
+    const startDate = new Date("2024-07-01"); // Starting date
     const today = new Date();
     const diffTime = Math.abs(today - startDate);
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays % playerData.length;
+    const playerIndex = diffDays % playerData.length;
+
+    // Debug information
+    console.log("Start date: " + startDate);
+    console.log("Today: " + today);
+    console.log("Difference in time (ms): " + diffTime);
+    console.log("Difference in days: " + diffDays);
+    console.log("Player index: " + playerIndex);
+
+    return playerIndex;
 }
 
 // Set the correct player data based on the date
@@ -26,7 +35,6 @@ const correctPlayer = playerData[playerIndex];
 document.getElementById('player-stats-image').src = correctPlayer.image;
 
 // For debugging purposes: print out the selected player and image
-console.log("Player index: " + playerIndex);
 console.log("Correct player: " + correctPlayer.name);
 console.log("Image path: " + correctPlayer.image);
 
@@ -51,4 +59,5 @@ document.getElementById('submit-guess').addEventListener('click', function () {
         }
     }
 });
+
 
