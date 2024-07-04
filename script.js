@@ -13,7 +13,7 @@ const playerData = [
 function getPlayerIndex() {
     const startDate = new Date("2024-01-01"); // Starting date
     const today = new Date();
-    const diffTime = today - startDate;
+    const diffTime = Math.abs(today - startDate);
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     return diffDays % playerData.length;
 }
@@ -24,6 +24,11 @@ const correctPlayer = playerData[playerIndex];
 
 // Set the correct image based on the date
 document.getElementById('player-stats-image').src = correctPlayer.image;
+
+// For debugging purposes: print out the selected player and image
+console.log("Player index: " + playerIndex);
+console.log("Correct player: " + correctPlayer.name);
+console.log("Image path: " + correctPlayer.image);
 
 let guesses = 0;
 const maxGuesses = 3;
@@ -46,3 +51,4 @@ document.getElementById('submit-guess').addEventListener('click', function () {
         }
     }
 });
+
