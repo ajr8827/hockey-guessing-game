@@ -51,6 +51,9 @@ function setUpGame() {
             guesses++;
             document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
 
+            console.log("User guess: " + guess);
+            console.log("Correct answer: " + correctPlayer.name.toLowerCase().trim());
+
             if (guess === correctPlayer.name.toLowerCase().trim()) {
                 document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayer.name}.`;
                 document.getElementById('feedback').style.color = "green";
@@ -73,10 +76,13 @@ function setUpGame() {
         option.value = name;
         datalist.appendChild(option);
     });
+
+    console.log("Player names loaded for autofill.");
 }
 
 // Fetch player data when the script loads
 fetchPlayerData();
+
 
 
 
