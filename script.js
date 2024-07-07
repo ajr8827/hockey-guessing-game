@@ -1,6 +1,7 @@
 const apiURL = "https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster";
 let playerData = [];
 let playerNames = [];
+let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png", id: null };
 
 // Fetch player data from NHL API
 async function fetchPlayerData() {
@@ -10,11 +11,18 @@ async function fetchPlayerData() {
 
         data.teams.forEach(team => {
             team.roster.roster.forEach(player => {
-                playerData.push({
+                const playerObj = {
                     name: player.person.fullName,
-                    image: `https://nhl.bamcontent.com/images/headshots/current/168x168/${player.person.id}.jpg`
-                });
+                    image: `https://nhl.bamcontent.com/images/headshots/current/168x168/${player.person.id}.jpg`,
+                    id: player.person.id
+                };
+                playerData.push(playerObj);
                 playerNames.push(player.person.fullName);
+
+                // Set correctPlayer id if it's Daniel Sprong
+                if (player.person.fullName.toLowerCase() === "daniel sprong") {
+                    correctPlayer.id = player.person.id;
+                }
             });
         });
 
@@ -27,15 +35,12 @@ async function fetchPlayerData() {
 
 // Initialize the game
 function setUpGame() {
-    const playerIndex = getPlayerIndex();
-    const correctPlayer = playerData[playerIndex];
-
-    // Set the correct image based on the date
+    // Set the correct stats image for Daniel Sprong
     document.getElementById('player-stats-image').src = correctPlayer.image;
 
     // For debugging purposes: print out the selected player and image
     console.log("Correct player: " + correctPlayer.name);
-    console.log("Image path: " + correctPlayer.image);
+    console.log("Stats Image path: " + correctPlayer.image);
 
     let guesses = 0;
     const maxGuesses = 3;
@@ -49,7 +54,8 @@ function setUpGame() {
             if (guess === correctPlayer.name.toLowerCase().trim()) {
                 document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayer.name}.`;
                 document.getElementById('feedback').style.color = "green";
-                document.getElementById('player-stats-image').src = correctPlayer.image;
+                // Show the correct player image
+                document.getElementById('player-stats-image').src = `https://nhl.bamcontent.com/images/headshots/current/168x168/${correctPlayer.id}.jpg`;
             } else {
                 document.getElementById('feedback').innerText = "Incorrect. Try again!";
                 document.getElementById('feedback').style.color = "red";
@@ -69,16 +75,6 @@ function setUpGame() {
     });
 }
 
-// Function to get the index of the player based on the date
-function getPlayerIndex() {
-    const startDate = new Date("2024-01-01"); // Starting date
-    const today = new Date();
-    const diffTime = Math.abs(today - startDate);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays % playerData.length;
-}
-
 // Fetch player data when the script loads
 fetchPlayerData();
-
 
