@@ -23,9 +23,9 @@ main {
 }
 
 .player-stats img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    width: 80%; /* Adjust the width as needed to make the image readable */
+    height: auto;
+    object-fit: contain;
     margin-bottom: 1em;
 }
 
