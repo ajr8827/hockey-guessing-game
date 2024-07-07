@@ -82,3 +82,15 @@ main {
     margin-top: 1em;
     font-size: 1.2em;
 }
+
+#guess-count {
+    margin-top: 1em;
+    font-size: 1.2em;
+    color: #ffcc00; /* Gold color */
+}
+
+.player-stats img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
