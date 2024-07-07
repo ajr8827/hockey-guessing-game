@@ -77,4 +77,3 @@ function setUpGame() {
 
 // Fetch player data when the script loads
 fetchPlayerData();
-
