@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh; /* Ensure the footer is at the bottom */
 }
 
 header {
@@ -20,10 +21,12 @@ header {
 main {
     padding: 2em;
     text-align: center;
+    flex-grow: 1; /* Ensure main content takes up available space */
 }
 
 .player-stats img {
-    width: 80%; /* Adjust the width as needed to make the image readable */
+    width: 100%; /* Ensure the image is readable */
+    max-width: 600px; /* Limit the maximum width */
     height: auto;
     object-fit: contain;
     margin-bottom: 1em;
@@ -68,6 +71,5 @@ footer {
     width: 100%;
     padding: 1em;
     text-align: center;
-    position: absolute;
-    bottom: 0;
+    position: relative;
 }
