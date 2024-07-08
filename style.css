@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh; /* Ensure the footer is at the bottom */
+    min-height: 100vh;
 }
 
 header {
@@ -21,12 +21,12 @@ header {
 main {
     padding: 2em;
     text-align: center;
-    flex-grow: 1; /* Ensure main content takes up available space */
+    flex-grow: 1;
 }
 
 .player-stats img {
-    width: 100%; /* Ensure the image is readable */
-    max-width: 600px; /* Limit the maximum width */
+    width: 100%;
+    max-width: 600px;
     height: auto;
     object-fit: contain;
     margin-bottom: 1em;
@@ -62,7 +62,7 @@ button:hover {
 #guess-count {
     margin-top: 1em;
     font-size: 1.2em;
-    color: #ffcc00; /* Gold color */
+    color: #ffcc00;
 }
 
 footer {
