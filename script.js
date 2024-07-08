@@ -1,41 +1,19 @@
-const apiURL = "https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster";
-let playerData = [];
-let playerNames = [];
+const playerList = [
+    "Connor McDavid", "Sidney Crosby", "Auston Matthews", "Nathan MacKinnon",
+    "Alexander Ovechkin", "Leon Draisaitl", "David Pastrnak", "Mitch Marner",
+    "Brad Marchand", "Patrick Kane", "Artemi Panarin", "Steven Stamkos",
+    "Jonathan Huberdeau", "Johnny Gaudreau", "Jack Eichel", "Sebastian Aho",
+    "Mark Scheifele", "Brayden Point", "Matthew Tkachuk", "Nikita Kucherov",
+    "Roman Josi", "Victor Hedman", "Cale Makar", "Quinn Hughes",
+    "Miro Heiskanen", "Adam Fox", "Charlie McAvoy", "John Carlson",
+    "Alex Pietrangelo", "Kris Letang", "Dougie Hamilton", "Morgan Rielly",
+    "Shea Theodore", "Devon Toews", "Ryan Pulock", "Jaccob Slavin",
+    "Aaron Ekblad", "Seth Jones", "Zach Werenski", "Thomas Chabot",
+    "Daniel Sprong" // Include Daniel Sprong for testing purposes
+    // Add more players as needed
+];
+
 let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png", id: null };
-
-// Fetch player data from NHL API
-async function fetchPlayerData() {
-    try {
-        const response = await fetch(apiURL);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Fetched data:", data); // Debugging: Log the fetched data
-
-        data.teams.forEach(team => {
-            team.roster.roster.forEach(player => {
-                const playerObj = {
-                    name: player.person.fullName,
-                    image: `https://nhl.bamcontent.com/images/headshots/current/168x168/${player.person.id}.jpg`,
-                    id: player.person.id
-                };
-                playerData.push(playerObj);
-                playerNames.push(player.person.fullName);
-
-                // Set correctPlayer id if it's Daniel Sprong
-                if (player.person.fullName.toLowerCase() === "daniel sprong") {
-                    correctPlayer.id = player.person.id;
-                }
-            });
-        });
-
-        // Initialize the game after fetching player data
-        setUpGame();
-    } catch (error) {
-        console.error("Error fetching player data: ", error);
-    }
-}
 
 // Initialize the game
 function setUpGame() {
@@ -75,7 +53,7 @@ function setUpGame() {
 
     // Autofill player names
     const datalist = document.getElementById('player-suggestions');
-    playerNames.forEach(name => {
+    playerList.forEach(name => {
         const option = document.createElement('option');
         option.value = name;
         datalist.appendChild(option);
@@ -84,5 +62,5 @@ function setUpGame() {
     console.log("Player names loaded for autofill.");
 }
 
-// Fetch player data when the script loads
-fetchPlayerData();
+// Initialize the game setup
+setUpGame();
