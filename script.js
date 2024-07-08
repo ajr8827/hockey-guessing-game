@@ -7,7 +7,11 @@ let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png", id: nu
 async function fetchPlayerData() {
     try {
         const response = await fetch(apiURL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
+        console.log("Fetched data:", data); // Debugging: Log the fetched data
 
         data.teams.forEach(team => {
             team.roster.roster.forEach(player => {
@@ -82,8 +86,3 @@ function setUpGame() {
 
 // Fetch player data when the script loads
 fetchPlayerData();
-
-
-
-
-
