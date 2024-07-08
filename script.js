@@ -12,7 +12,7 @@ const playerList = [
     "Daniel Sprong" // Include Daniel Sprong for testing purposes
 ];
 
-let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png", id: null };
+let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png" };
 
 // Initialize the game
 function setUpGame() {
@@ -38,8 +38,6 @@ function setUpGame() {
             if (guess === correctPlayer.name.toLowerCase().trim()) {
                 document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayer.name}.`;
                 document.getElementById('feedback').style.color = "green";
-                // Show the correct player image
-                document.getElementById('player-stats-image').src = correctPlayer.image;
             } else {
                 document.getElementById('feedback').innerText = "Incorrect. Try again!";
                 document.getElementById('feedback').style.color = "red";
