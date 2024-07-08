@@ -10,7 +10,6 @@ const playerList = [
     "Shea Theodore", "Devon Toews", "Ryan Pulock", "Jaccob Slavin",
     "Aaron Ekblad", "Seth Jones", "Zach Werenski", "Thomas Chabot",
     "Daniel Sprong" // Include Daniel Sprong for testing purposes
-    // Add more players as needed
 ];
 
 let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png", id: null };
@@ -40,10 +39,11 @@ function setUpGame() {
                 document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayer.name}.`;
                 document.getElementById('feedback').style.color = "green";
                 // Show the correct player image
-                document.getElementById('player-stats-image').src = `https://nhl.bamcontent.com/images/headshots/current/168x168/${correctPlayer.id}.jpg`;
+                document.getElementById('player-stats-image').src = correctPlayer.image;
             } else {
                 document.getElementById('feedback').innerText = "Incorrect. Try again!";
                 document.getElementById('feedback').style.color = "red";
+                showFeedbackAnimation("X");
                 if (guesses === maxGuesses) {
                     document.getElementById('feedback').innerText = `Out of guesses! The correct player was ${correctPlayer.name}.`;
                 }
@@ -60,6 +60,16 @@ function setUpGame() {
     });
 
     console.log("Player names loaded for autofill.");
+}
+
+// Show feedback animation
+function showFeedbackAnimation(symbol) {
+    const feedbackAnimation = document.getElementById('feedback-animation');
+    feedbackAnimation.innerText = symbol;
+    feedbackAnimation.classList.remove('hidden');
+    setTimeout(() => {
+        feedbackAnimation.classList.add('hidden');
+    }, 1000);
 }
 
 // Initialize the game setup
