@@ -9,45 +9,23 @@ const playerList = [
     "Alex Pietrangelo", "Kris Letang", "Dougie Hamilton", "Morgan Rielly",
     "Shea Theodore", "Devon Toews", "Ryan Pulock", "Jaccob Slavin",
     "Aaron Ekblad", "Seth Jones", "Zach Werenski", "Thomas Chabot",
-    "Daniel Sprong" // Include Daniel Sprong for testing purposes
+    "Daniel Sprong", "Ryan Kesler", "Tyler Myers", "Conor Garland"
 ];
 
-let correctPlayer = { name: "Daniel Sprong", image: "images/Player8.png" };
+const playersToGuess = [
+    { name: "Ryan Kesler", image: "images/Player9.png" },
+    { name: "Tyler Myers", image: "images/Player10.png" },
+    { name: "Conor Garland", image: "images/Player11.png" }
+];
+
+let currentPlayerIndex = 0;
+let guesses = 0;
+const maxGuesses = 3;
 
 // Initialize the game
 function setUpGame() {
-    // Set the correct stats image for Daniel Sprong
-    document.getElementById('player-stats-image').src = correctPlayer.image;
-
-    // For debugging purposes: print out the selected player and image
-    console.log("Correct player: " + correctPlayer.name);
-    console.log("Stats Image path: " + correctPlayer.image);
-
-    let guesses = 0;
-    const maxGuesses = 3;
-
-    document.getElementById('submit-guess').addEventListener('click', function () {
-        if (guesses < maxGuesses) {
-            let guess = document.getElementById('guess-input').value.toLowerCase().trim();
-            guesses++;
-            document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
-
-            console.log("User guess: " + guess);
-            console.log("Correct answer: " + correctPlayer.name.toLowerCase().trim());
-
-            if (guess === correctPlayer.name.toLowerCase().trim()) {
-                document.getElementById('feedback').innerText = `Correct! The player is ${correctPlayer.name}.`;
-                document.getElementById('feedback').style.color = "green";
-            } else {
-                document.getElementById('feedback').innerText = "Incorrect. Try again!";
-                document.getElementById('feedback').style.color = "red";
-                showFeedbackAnimation("X");
-                if (guesses === maxGuesses) {
-                    document.getElementById('feedback').innerText = `Out of guesses! The correct player was ${correctPlayer.name}.`;
-                }
-            }
-        }
-    });
+    // Set the initial player stats image
+    setPlayerImage();
 
     // Autofill player names
     const datalist = document.getElementById('player-suggestions');
@@ -57,18 +35,43 @@ function setUpGame() {
         datalist.appendChild(option);
     });
 
+    // Set up event listener for the submit button
+    document.getElementById('submit-guess').addEventListener('click', handleGuess);
+
     console.log("Player names loaded for autofill.");
 }
 
-// Show feedback animation
-function showFeedbackAnimation(symbol) {
-    const feedbackAnimation = document.getElementById('feedback-animation');
-    feedbackAnimation.innerText = symbol;
-    feedbackAnimation.classList.remove('hidden');
-    setTimeout(() => {
-        feedbackAnimation.classList.add('hidden');
-    }, 1000);
+// Set the player image based on the current index
+function setPlayerImage() {
+    const player = playersToGuess[currentPlayerIndex];
+    document.getElementById('player-stats-image').src = player.image;
+    document.getElementById('player-stats-image').alt = `Player Stats Screenshot for ${player.name}`;
 }
 
-// Initialize the game setup
-setUpGame();
+// Handle the user's guess
+function handleGuess() {
+    if (guesses < maxGuesses) {
+        const guess = document.getElementById('guess-input').value.toLowerCase().trim();
+        guesses++;
+        document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
+
+        console.log("User guess: " + guess);
+        console.log("Correct answer: " + playersToGuess[currentPlayerIndex].name.toLowerCase().trim());
+
+        if (guess === playersToGuess[currentPlayerIndex].name.toLowerCase().trim()) {
+            document.getElementById('feedback').innerText = `Correct! The player is ${playersToGuess[currentPlayerIndex].name}.`;
+            document.getElementById('feedback').style.color = "green";
+
+            // Move to the next player or show the congratulations message if all players are guessed
+            currentPlayerIndex++;
+            if (currentPlayerIndex < playersToGuess.length) {
+                setPlayerImage();
+                guesses = 0;
+                document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
+                document.getElementById('feedback').innerText = '';
+            } else {
+                document.getElementById('congratulations').classList.remove('hidden');
+                document.getElementById('guess-form').classList.add('hidden');
+            }
+        } else {
+            document
