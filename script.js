@@ -61,16 +61,18 @@ function handleGuess() {
         if (guess === playersToGuess[currentPlayerIndex].name.toLowerCase().trim()) {
             document.getElementById('feedback').innerText = `Correct! The player is ${playersToGuess[currentPlayerIndex].name}.`;
             document.getElementById('feedback').style.color = "green";
-            currentPlayerIndex++;
-            if (currentPlayerIndex < playersToGuess.length) {
-                setPlayerImage();
-                guesses = 0;
-                document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
-                document.getElementById('feedback').innerText = '';
-            } else {
-                document.getElementById('congratulations').classList.remove('hidden');
-                document.getElementById('guess-form').classList.add('hidden');
-            }
+            setTimeout(() => {
+                currentPlayerIndex++;
+                if (currentPlayerIndex < playersToGuess.length) {
+                    setPlayerImage();
+                    guesses = 0;
+                    document.getElementById('guess-count').innerText = `Guesses: ${guesses}/${maxGuesses}`;
+                    document.getElementById('feedback').innerText = '';
+                } else {
+                    document.getElementById('congratulations').classList.remove('hidden');
+                    document.getElementById('guess-form').classList.add('hidden');
+                }
+            }, 1000); // Delay to show "Correct" message
         } else {
             document.getElementById('feedback').innerText = "Incorrect. Try again!";
             document.getElementById('feedback').style.color = "red";
