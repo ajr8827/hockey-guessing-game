@@ -74,4 +74,33 @@ function handleGuess() {
                 document.getElementById('guess-form').classList.add('hidden');
             }
         } else {
-            document
+            document.getElementById('feedback').innerText = "Incorrect. Try again!";
+            document.getElementById('feedback').style.color = "red";
+            showFeedbackAnimation("X");
+            if (guesses === maxGuesses) {
+                document.getElementById('feedback').innerText = `Out of guesses! The correct player was ${playersToGuess[currentPlayerIndex].name}.`;
+                guesses = 0;
+                currentPlayerIndex++;
+                if (currentPlayerIndex < playersToGuess.length) {
+                    setPlayerImage();
+                } else {
+                    document.getElementById('congratulations').classList.remove('hidden');
+                    document.getElementById('guess-form').classList.add('hidden');
+                }
+            }
+        }
+    }
+}
+
+// Show feedback animation
+function showFeedbackAnimation(symbol) {
+    const feedbackAnimation = document.getElementById('feedback-animation');
+    feedbackAnimation.innerText = symbol;
+    feedbackAnimation.classList.remove('hidden');
+    setTimeout(() => {
+        feedbackAnimation.classList.add('hidden');
+    }, 1000);
+}
+
+// Initialize the game setup
+setUpGame();
