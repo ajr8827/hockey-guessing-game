@@ -61,8 +61,6 @@ function handleGuess() {
         if (guess === playersToGuess[currentPlayerIndex].name.toLowerCase().trim()) {
             document.getElementById('feedback').innerText = `Correct! The player is ${playersToGuess[currentPlayerIndex].name}.`;
             document.getElementById('feedback').style.color = "green";
-
-            // Move to the next player or show the congratulations message if all players are guessed
             currentPlayerIndex++;
             if (currentPlayerIndex < playersToGuess.length) {
                 setPlayerImage();
@@ -78,15 +76,8 @@ function handleGuess() {
             document.getElementById('feedback').style.color = "red";
             showFeedbackAnimation("X");
             if (guesses === maxGuesses) {
-                document.getElementById('feedback').innerText = `Out of guesses! The correct player was ${playersToGuess[currentPlayerIndex].name}.`;
+                document.getElementById('feedback').innerText = `Out of guesses! The correct player was ${playersToGuess[currentPlayerIndex].name}. Try again!`;
                 guesses = 0;
-                currentPlayerIndex++;
-                if (currentPlayerIndex < playersToGuess.length) {
-                    setPlayerImage();
-                } else {
-                    document.getElementById('congratulations').classList.remove('hidden');
-                    document.getElementById('guess-form').classList.add('hidden');
-                }
             }
         }
     }
