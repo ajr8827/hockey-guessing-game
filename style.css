@@ -128,3 +128,9 @@ footer {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
 }
+
+#congratulations {
+    font-size: 2em;
+    color: green;
+    display: none;
+}
